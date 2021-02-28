@@ -20,7 +20,7 @@ const locators = {
     CONTAS: {
         NAME: '[data-test=nome]',
         SAVE_BUTTON: '.btn',
-        XP_MODIFY_BUTTON: "//table//td[contains(.,'Conta para alterar')]/..//i[@class='far fa-edit']"
+        XP_MODIFY_BUTTON: contaNome => `//table//td[contains(.,'${contaNome}')]/..//i[@class='far fa-edit']`
     },
 
     MOVIMENTACAO: {

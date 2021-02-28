@@ -24,7 +24,7 @@ describe('Testes automatizados end to end para portfólio', () => {
 
     it('alterar conta', () => {
         cy.accessAccountMenu()
-        cy.xpath(locators.CONTAS.XP_MODIFY_BUTTON).click()
+        cy.xpath(locators.CONTAS.XP_MODIFY_BUTTON('Conta para alterar')).click()
         cy.get(locators.CONTAS.NAME).clear().type('Conta para alterar automação')
         cy.get(locators.CONTAS.SAVE_BUTTON).click()
         cy.assertMessageContainer('Conta atualizada com sucesso!')
