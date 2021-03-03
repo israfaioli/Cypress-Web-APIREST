@@ -1,46 +1,42 @@
 /// <reference types = "cypress" />
 
+import '../support/commandsApiRest'
+
+let token
+
 describe('testes automatizados de apirest para portfólio', () => {
     before(() => {
-
+        cy.getToken('israfaioli@gmail.com', '123456').then(tkn => {
+            token = tkn
+        })
     })
 
     beforeEach(() => {
-
-    })
-
-    it('login', () => {
         cy.request({
-            method: 'POST',
-            url: 'https://barrigarest.wcaquino.me/signin',
-            body: {
-                email: "israfaioli@gmail.com",
-                redirecionar: false,
-                senha: "123456"
+            method: 'GET',
+            url: '/reset',
+            headers: {
+                Authorization: `JWT ${token}`
             }
-        }).its('body.token').should('not.be.empty')
+        }).as('response')
+
+        cy.get('@response').then(res => {
+            expect(res.status).to.be.equal(200)
+        })
+
     })
 
     it.only('inserir uma nova conta', () => {
         cy.request({
             method: 'POST',
-            url: 'https://barrigarest.wcaquino.me/signin',
+            url: '/contas',
+            headers: {
+                Authorization: `JWT ${token}`
+            },
             body: {
-                email: "israfaioli@gmail.com",
-                redirecionar: false,
-                senha: "123456"
+                nome: "conta via apirest"
             }
-        }).its('body.token').should('not.be.empty')
-          .then(token => {
-            cy.request({
-                method: 'POST',
-                url: 'https://barrigarest.wcaquino.me/contas',
-                headers: {Authorization: `JWT ${token}`},
-                body: {
-                    nome: "conta via apirest"
-                }
-            }).as('response')
-        })
+        }).as('response')
 
         cy.get('@response').then(res => {
             expect(res.status).to.be.equal(201)
