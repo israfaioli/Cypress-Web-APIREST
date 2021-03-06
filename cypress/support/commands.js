@@ -45,6 +45,7 @@ Cypress.Commands.add('resetApplication', () => {
 
 Cypress.Commands.add('loginApplication', function() {
     cy.fixture('login').as('loginJson').then(() => {
+        cy.visitUrl('http://barrigareact.wcaquino.me')
         cy.get(locators.LOGIN.EMAIL).type(this.loginJson.email)
         cy.get(locators.LOGIN.PASSWORD).type(this.loginJson.senha)
         cy.get(locators.LOGIN.LOGIN_BUTTON).click()

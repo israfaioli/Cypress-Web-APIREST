@@ -5,7 +5,6 @@ import '../support/commandsContas'
 
 describe('Testes automatizados end to end para portfólio', () => {
     before(() => {
-        cy.visitUrl('http://barrigareact.wcaquino.me')
         cy.loginApplication()
         cy.resetApplication()
     })
