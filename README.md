@@ -19,12 +19,14 @@ Meu conhecimento base foi oriundo do curso Cypress pela Udemy onde consegui apre
   ```
 
 * Instalar o plugin de xpath.
-
+  ```
   npm install cypress-xpath
+    ```
 
   * Adicionar dependencia do xpath no arquivo index.js
-
+  ```
   require('cypress-xpath')
+    ```
 
 ### Estrutura do projeto ###
 
@@ -40,8 +42,14 @@ Meu conhecimento base foi oriundo do curso Cypress pela Udemy onde consegui apre
 ### Rodando o projeto ###
 
 * Acessa a pasta do projeto
-* Rode o seguinte comando via terminal:
+* Rode todas as suites de testes:
 
 ```
-mvn clean test -Dtest=CucumberRunner -Denviromment=qa
+npx cypress run
+```
+
+* Rodar um script de teste específico:
+
+```
+npx cypress run --spec "cypress/integration/${nome_arquivo_spec}"
 ```

@@ -19,7 +19,7 @@ describe('Should test at a functional level', () => {
         cy.get(locators.MENU.HOME).click()
     })
 
-    it.only('Teste para testar responsividade', () => {
+    it('Teste para testar responsividade', () => {
         cy.get('[data-test=menu-home]').should('exist')
             .and('be.visible')
         cy.viewport(500, 700)
